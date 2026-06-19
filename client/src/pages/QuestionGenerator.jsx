@@ -6,6 +6,7 @@ import toast from 'react-hot-toast'
 import { useAuth } from '../context/AuthContext'
 import { ArrowLeft, ListChecks, Sparkles, Download, ChevronDown, ChevronUp } from 'lucide-react'
 import AnimatedBackground from '../components/AnimatedBackground'
+import { API_URL } from '../config'
 
 const topics = [
   'DSA', 'Operating Systems', 'DBMS', 'OOPS', 'System Design',
@@ -30,7 +31,7 @@ export default function QuestionGenerator() {
     if (!finalTopic) return toast.error('Please select or enter a topic')
     setLoading(true)
     try {
-      const { data } = await axios.post('http://localhost:5000/api/questions/generate',
+      const { data } = await axios.post(`${API_URL}/api/questions/generate`,
         { topic: finalTopic, difficulty, count },
         { headers: { Authorization: `Bearer ${user.token}` } }
       )

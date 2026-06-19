@@ -9,6 +9,7 @@ import {
   Trash2, BookOpen, X, ChevronDown, Mic, MicOff
 } from 'lucide-react'
 import AnimatedBackground from '../components/AnimatedBackground'
+import { API_URL } from '../config'
 
 const TypingIndicator = () => (
   <div className="flex items-center gap-1 px-4 py-3">
@@ -92,7 +93,7 @@ const recognitionRef = useRef(null)
 
   const fetchFiles = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/chat/files', {
+      const { data } = await axios.get(`${API_URL}/api/chat/files`, {
         headers: { Authorization: `Bearer ${user.token}` }
       })
       setFiles(data.files || [])
@@ -136,7 +137,7 @@ const stopVoice = () => {
     try {
       const formData = new FormData()
       formData.append('document', file)
-      const { data } = await axios.post('http://localhost:5000/api/chat/upload', formData, {
+      const { data } = await axios.post(`${API_URL}/api/chat/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${user.token}`
@@ -174,7 +175,7 @@ const stopVoice = () => {
 
     try {
       const history = messages.slice(-8).map(m => ({ role: m.role, content: m.content }))
-      const { data } = await axios.post('http://localhost:5000/api/chat/message',
+      const { data } = await axios.post(`${API_URL}/api/chat/message`,
         { message: msg, history },
         { headers: { Authorization: `Bearer ${user.token}` } }
       )
@@ -196,7 +197,7 @@ const stopVoice = () => {
 
   const clearDocs = async () => {
     try {
-      await axios.delete('http://localhost:5000/api/chat/clear', {
+      await axios.delete(`${API_URL}/api/chat/clear`, {
         headers: { Authorization: `Bearer ${user.token}` }
       })
       setFiles([])

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Brain, Mail, ArrowLeft, CheckCircle } from 'lucide-react'
-
+import { API_URL } from '../config'
 export default function ForgotPassword() {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
@@ -14,7 +14,7 @@ export default function ForgotPassword() {
     e.preventDefault()
     setLoading(true)
     try {
-      await axios.post('http://localhost:5000/api/auth/forgot-password', { email })
+      await axios.post(`${API_URL}/api/auth/forgot-password`, { email })
       setSent(true)
     } catch (err) {
       toast.error('Something went wrong. Please try again.')

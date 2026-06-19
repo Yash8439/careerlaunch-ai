@@ -9,6 +9,7 @@ import {
   ExternalLink, Eye, Filter, Video, FileText, Code, Notebook
 } from 'lucide-react'
 import AnimatedBackground from '../components/AnimatedBackground'
+import { API_URL } from '../config'
 
 const categories = ['All', 'DSA', 'OS', 'DBMS', 'OOPS', 'Web Development', 'System Design', 'Interview Experience', 'Company Guide']
 
@@ -39,7 +40,7 @@ export default function ResourceHub() {
     setLoading(true)
     try {
       if (showBookmarks) {
-        const { data } = await axios.get('http://localhost:5000/api/resources/bookmarks', {
+        const { data } = await axios.get(`${API_URL}/api/resources/bookmarks`, {
           headers: { Authorization: `Bearer ${user.token}` }
         })
         setResources(data.resources.map(r => ({ ...r, isBookmarked: true })))
@@ -48,7 +49,7 @@ export default function ResourceHub() {
         if (category !== 'All') params.append('category', category)
         if (search) params.append('search', search)
 
-        const { data } = await axios.get(`http://localhost:5000/api/resources?${params}`, {
+        const { data } = await axios.get(`${API_URL}/api/resources?${params}`, {
           headers: { Authorization: `Bearer ${user.token}` }
         })
         setResources(data.resources)
@@ -62,7 +63,7 @@ export default function ResourceHub() {
 
   const toggleBookmark = async (id) => {
     try {
-      const { data } = await axios.post(`http://localhost:5000/api/resources/${id}/bookmark`, {}, {
+      const { data } = await axios.post(`${API_URL}/api/resources/${id}/bookmark`, {}, {
         headers: { Authorization: `Bearer ${user.token}` }
       })
       setResources(prev =>
@@ -78,7 +79,7 @@ export default function ResourceHub() {
 
   const openResource = async (resource) => {
     try {
-      await axios.post(`http://localhost:5000/api/resources/${resource._id}/view`, {}, {
+      await axios.post(`${API_URL}/api/resources/${resource._id}/view`, {}, {
         headers: { Authorization: `Bearer ${user.token}` }
       })
     } catch { }

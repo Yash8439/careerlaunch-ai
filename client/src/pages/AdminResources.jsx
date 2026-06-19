@@ -5,6 +5,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useAuth } from '../context/AuthContext'
 import AnimatedBackground from '../components/AnimatedBackground'
+import { API_URL } from '../config'
 import {
   Users, Activity, BarChart3, BookOpen, LogOut, Shield, Brain,
   Plus, Trash2, X
@@ -33,7 +34,7 @@ export default function AdminResources() {
 
   const fetchResources = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/resources', {
+      const { data } = await axios.get(`${API_URL}/api/resources`, {
         headers: { Authorization: `Bearer ${user.token}` }
       })
       setResources(data.resources)
@@ -48,7 +49,7 @@ export default function AdminResources() {
     if (!form.title || !form.link) return toast.error('Title and link are required')
     try {
       const payload = { ...form, tags: form.tags.split(',').map(t => t.trim()).filter(Boolean) }
-      await axios.post('http://localhost:5000/api/admin/resources', payload, {
+      await axios.post(`${API_URL}/api/admin/resources`, payload, {
         headers: { Authorization: `Bearer ${user.token}` }
       })
       toast.success('Resource created!')
@@ -63,7 +64,7 @@ export default function AdminResources() {
   const deleteResource = async (id) => {
     if (!window.confirm('Delete this resource?')) return
     try {
-      await axios.delete(`http://localhost:5000/api/admin/resources/${id}`, {
+      await axios.delete(`${API_URL}/api/admin/resources/${id}`, {
         headers: { Authorization: `Bearer ${user.token}` }
       })
       setResources(prev => prev.filter(r => r._id !== id))

@@ -9,6 +9,7 @@ import {
   BookOpen, Code, CheckCircle2, ChevronDown, ChevronUp, Download
 } from 'lucide-react'
 import AnimatedBackground from '../components/AnimatedBackground'
+import { API_URL } from '../config'
 
 const roleOptions = [
   'Full Stack Developer', 'Frontend Developer', 'Backend Developer',
@@ -98,7 +99,7 @@ export default function RoadmapGenerator() {
     if (!form.targetRole) return toast.error('Please select target role')
     setLoading(true)
     try {
-      const { data } = await axios.post('http://localhost:5000/api/roadmap/generate', form, {
+      const { data } = await axios.post(`${API_URL}/api/roadmap/generate`, form, {
         headers: { Authorization: `Bearer ${user.token}` }
       })
       setRoadmap(data.roadmap)

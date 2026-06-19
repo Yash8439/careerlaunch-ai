@@ -6,6 +6,7 @@ import toast from 'react-hot-toast'
 import { useAuth } from '../context/AuthContext'
 import AnimatedBackground from '../components/AnimatedBackground'
 import TiltCard from '../components/TiltCard'
+import { API_URL } from '../config'
 import {
   Users, Activity, FileText, Mic, TrendingUp, LogOut,
   Shield, BarChart3, BookOpen, Search, Trash2, Ban, CheckCircle,
@@ -33,7 +34,7 @@ export default function AdminDashboard() {
 
   const fetchStats = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/admin/stats', {
+      const { data } = await axios.get(`${API_URL}/api/admin/stats`, {
         headers: { Authorization: `Bearer ${user.token}` }
       })
       setStats(data.stats)

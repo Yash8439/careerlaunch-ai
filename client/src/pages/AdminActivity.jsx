@@ -5,6 +5,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useAuth } from '../context/AuthContext'
 import AnimatedBackground from '../components/AnimatedBackground'
+import { API_URL } from '../config'
 import {
   Users, Activity, BarChart3, BookOpen, LogOut, Shield, Brain,
   FileText, Mic, Map, ListChecks
@@ -36,7 +37,7 @@ export default function AdminActivity() {
 
   const fetchActivity = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/admin/activity', {
+       const { data } = await axios.get(`${API_URL}/api/admin/activity`, {
         headers: { Authorization: `Bearer ${user.token}` }
       })
       setActivities(data.activities)

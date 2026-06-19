@@ -10,6 +10,7 @@ import {
 } from 'lucide-react'
 import AnimatedBackground from '../components/AnimatedBackground'
 import jsPDF from 'jspdf'
+import { API_URL } from '../config'
 
 const CircularProgress = ({ value, size = 140, color = '#7F77DD' }) => {
   const r = 54
@@ -65,7 +66,7 @@ export default function ResumeAnalyzer() {
     try {
       const formData = new FormData()
       formData.append('resume', file)
-      const { data } = await axios.post('http://localhost:5000/api/resume/analyze', formData, {
+      const { data } = await axios.post(`${API_URL}/api/resume/analyze`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${user.token}`

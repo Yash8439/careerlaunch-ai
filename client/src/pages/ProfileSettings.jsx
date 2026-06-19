@@ -5,6 +5,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useAuth } from '../context/AuthContext'
 import AnimatedBackground from '../components/AnimatedBackground'
+import { API_URL } from '../config'
 import {
   ArrowLeft, Camera, User, Lock, Trash2, Save, Eye, EyeOff
 } from 'lucide-react'
@@ -32,7 +33,7 @@ export default function ProfileSettings() {
     if (!name.trim() || name.trim().length < 2) return toast.error('Name must be at least 2 characters')
     setSavingName(true)
     try {
-      const { data } = await axios.put('http://localhost:5000/api/profile/update', { name },
+      const { data } = await axios.put(`${API_URL}/api/profile/update`, { name },
         { headers: { Authorization: `Bearer ${user.token}` } })
       updateLocalUser({ name: data.user.name })
       toast.success('Name updated!')
@@ -52,7 +53,7 @@ export default function ProfileSettings() {
     try {
       const formData = new FormData()
       formData.append('avatar', file)
-      const { data } = await axios.post('http://localhost:5000/api/profile/avatar', formData, {
+      const { data } = await axios.post(`${API_URL}/api/profile/avatar`, formData, {
         headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${user.token}` }
       })
       updateLocalUser({ avatar: data.avatar })
@@ -66,7 +67,7 @@ export default function ProfileSettings() {
 
   const removeAvatar = async () => {
     try {
-      await axios.delete('http://localhost:5000/api/profile/avatar', {
+      await axios.delete(`${API_URL}/api/profile/avatar`, {
         headers: { Authorization: `Bearer ${user.token}` }
       })
       updateLocalUser({ avatar: '' })
@@ -82,7 +83,7 @@ export default function ProfileSettings() {
 
     setChangingPassword(true)
     try {
-      await axios.put('http://localhost:5000/api/profile/change-password',
+      await axios.put(`${API_URL}/api/profile/change-password`,
         { currentPassword: passwords.current, newPassword: passwords.new },
         { headers: { Authorization: `Bearer ${user.token}` } })
       toast.success('Password changed successfully!')

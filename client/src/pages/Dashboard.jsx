@@ -11,6 +11,7 @@ import toast from 'react-hot-toast'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import AnimatedBackground from '../components/AnimatedBackground'
 import TiltCard from '../components/TiltCard'
+import { API_URL } from '../config'
 
 const navItems = [
   { icon: TrendingUp, label: 'Dashboard', path: '/dashboard', active: true },
@@ -145,7 +146,7 @@ const [achievements, setAchievements] = useState([])
 }, [])
 const fetchAchievements = async () => {
   try {
-    const { data } = await axios.get('http://localhost:5000/api/dashboard/achievements', {
+    const { data } = await axios.get(`${API_URL}/api/dashboard/achievements`, {
       headers: { Authorization: `Bearer ${user.token}` }
     })
     setAchievements(data.achievements)
@@ -156,7 +157,7 @@ const fetchAchievements = async () => {
 
 const fetchHeatmap = async () => {
   try {
-    const { data } = await axios.get('http://localhost:5000/api/dashboard/heatmap', {
+    const { data } = await axios.get(`${API_URL}/api/dashboard/heatmap`, {
       headers: { Authorization: `Bearer ${user.token}` }
     })
     setHeatmap(data.heatmap)
@@ -167,7 +168,7 @@ const fetchHeatmap = async () => {
 
 const fetchResumeHistory = async () => {
   try {
-    const { data } = await axios.get('http://localhost:5000/api/dashboard/resume-history', {
+    const { data } = await axios.get(`${API_URL}/api/dashboard/resume-history`, {
       headers: { Authorization: `Bearer ${user.token}` }
     })
     setResumeHistory(data.history)
@@ -177,7 +178,7 @@ const fetchResumeHistory = async () => {
 }
 const fetchDashboard = async () => {
   try {
-    const { data } = await axios.get('http://localhost:5000/api/dashboard/stats', {
+    const { data } = await axios.get(`${API_URL}/api/dashboard/stats`, {
       headers: { Authorization: `Bearer ${user.token}` }
     })
     setStats(data.stats)
@@ -191,7 +192,7 @@ const fetchDashboard = async () => {
 
 const fetchAdvice = async () => {
   try {
-    const { data } = await axios.get('http://localhost:5000/api/coach/daily-advice', {
+    const { data } = await axios.get(`${API_URL}/api/coach/daily-advice`, {
       headers: { Authorization: `Bearer ${user.token}` }
     })
     setAdvice(data.advice)

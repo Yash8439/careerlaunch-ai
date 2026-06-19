@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Brain, Lock, Eye, EyeOff, CheckCircle } from 'lucide-react'
+import { API_URL } from '../config'
 
 export default function ResetPassword() {
   const { token } = useParams()
@@ -21,7 +22,7 @@ export default function ResetPassword() {
 
     setLoading(true)
     try {
-      await axios.post(`http://localhost:5000/api/auth/reset-password/${token}`, { password })
+      await axios.post(`${API_URL}/api/auth/reset-password/${token}`, { password })
       setSuccess(true)
       toast.success('Password reset successful!')
       setTimeout(() => navigate('/login'), 2000)

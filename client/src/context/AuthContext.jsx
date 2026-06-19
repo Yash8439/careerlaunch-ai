@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import axios from 'axios'
+import { API_URL } from '../config'
 
 const AuthContext = createContext()
 
@@ -14,14 +15,14 @@ export const AuthProvider = ({ children }) => {
   }, [])
 
   const login = async (email, password) => {
-    const { data } = await axios.post('http://localhost:5000/api/auth/login', { email, password })
+     const { data } = await axios.post(`${API_URL}/api/auth/login`, { email, password })
     setUser(data)
     localStorage.setItem('careerlunch_user', JSON.stringify(data))
     return data
   }
 
   const register = async (name, email, password) => {
-    const { data } = await axios.post('http://localhost:5000/api/auth/register', { name, email, password })
+     const { data } = await axios.post(`${API_URL}/api/auth/register`, { name, email, password })
     setUser(data)
     localStorage.setItem('careerlunch_user', JSON.stringify(data))
     return data
@@ -32,7 +33,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('careerlunch_user')
   }
   const loginWithGoogle = async (credential) => {
-  const { data } = await axios.post('http://localhost:5000/api/auth/google', { credential })
+  const { data } = await axios.post(`${API_URL}/api/auth/google`, { credential })
   localStorage.setItem('careerlunch_user', JSON.stringify(data))
   setUser(data)
   return data

@@ -5,6 +5,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useAuth } from '../context/AuthContext'
 import AnimatedBackground from '../components/AnimatedBackground'
+import { API_URL } from '../config'
 import {
   Users, Activity, BarChart3, BookOpen, Search, Trash2, Ban,
   CheckCircle, LogOut, Shield, Brain, ChevronLeft, ChevronRight
@@ -33,7 +34,7 @@ export default function AdminUsers() {
   const fetchUsers = async () => {
     setLoading(true)
     try {
-      const { data } = await axios.get(`http://localhost:5000/api/admin/users?page=${page}&search=${search}`, {
+      const { data } = await axios.get(`${API_URL}/api/admin/users?page=${page}&search=${search}`, {
         headers: { Authorization: `Bearer ${user.token}` }
       })
       setUsers(data.users)
@@ -47,7 +48,7 @@ export default function AdminUsers() {
 
   const toggleStatus = async (userId) => {
     try {
-      const { data } = await axios.patch(`http://localhost:5000/api/admin/users/${userId}/toggle-status`, {}, {
+      const { data } = await axios.patch(`${API_URL}/api/admin/users/${userId}/toggle-status`, {}, {
         headers: { Authorization: `Bearer ${user.token}` }
       })
       setUsers(prev => prev.map(u => u._id === userId ? { ...u, isActive: data.isActive } : u))
@@ -60,7 +61,7 @@ export default function AdminUsers() {
   const deleteUser = async (userId) => {
     if (!window.confirm('Are you sure you want to delete this user? This cannot be undone.')) return
     try {
-      await axios.delete(`http://localhost:5000/api/admin/users/${userId}`, {
+      await axios.delete(`${API_URL}/api/admin/users/${userId}`, {
         headers: { Authorization: `Bearer ${user.token}` }
       })
       setUsers(prev => prev.filter(u => u._id !== userId))

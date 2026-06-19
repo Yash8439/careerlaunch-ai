@@ -10,6 +10,7 @@ import {
   XCircle, TrendingUp, AlertCircle
 } from 'lucide-react'
 import AnimatedBackground from '../components/AnimatedBackground'
+import { API_URL } from '../config'
 const roles = [
   { id: 'Full Stack Developer', label: 'Full Stack', icon: '⚡' },
   { id: 'Frontend Developer', label: 'Frontend', icon: '🎨' },
@@ -151,7 +152,7 @@ export default function MockInterview() {
     if (!role || !difficulty) return toast.error('Please select role and difficulty')
     setLoading(true)
     try {
-      const { data } = await axios.post('http://localhost:5000/api/interview/generate',
+      const { data } = await axios.post(`${API_URL}/api/interview/generate`,
         { role, difficulty },
         { headers: { Authorization: `Bearer ${user.token}` } }
       )
@@ -174,7 +175,7 @@ export default function MockInterview() {
     setEvaluating(true)
     try {
       const q = questions[currentQ]
-      const { data } = await axios.post('http://localhost:5000/api/interview/evaluate',
+      const { data } = await axios.post(`${API_URL}/api/interview/evaluate`,
         {
           question: q.question,
           answer: answer || 'No answer provided',
@@ -209,7 +210,7 @@ export default function MockInterview() {
 
   const generateReport = async () => {
     try {
-      const { data } = await axios.post('http://localhost:5000/api/interview/report',
+      const { data } = await axios.post(`${API_URL}/api/interview/report`,
         { answers, role, difficulty },
         { headers: { Authorization: `Bearer ${user.token}` } }
       )
