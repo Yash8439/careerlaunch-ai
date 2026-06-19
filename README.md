@@ -2,7 +2,7 @@
 
 **AI-powered placement preparation platform** built for engineering students preparing for tech placements. Combines resume analysis, mock interviews, study assistance, and personalized roadmaps into a single intelligent platform.
 
-🔗 **Live Demo:** [Coming Soon]
+🔗 **Live Demo:** https://careerlaunch-ai-dusky.vercel.app/
 📂 **Repository:** [github.com/Yash8439/careerlaunch-ai](https://github.com/Yash8439/careerlaunch-ai)
 
 ---
