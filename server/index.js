@@ -15,9 +15,17 @@ import coachRoutes from './routes/coach.routes.js'
 import resourcesRoutes from './routes/resources.routes.js'
 import adminRoutes from './routes/admin.routes.js'
 import profileRoutes from './routes/profile.routes.js'
+import coverLetterRoutes from './routes/coverletter.routes.js'
 const app = express()
 
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }))
+app.use(cors({
+  origin: [
+    process.env.CLIENT_URL,
+    'http://localhost:5173',
+    'http://localhost:5174',
+  ],
+  credentials: true
+}))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
@@ -32,6 +40,7 @@ app.use('/api/coach', coachRoutes)
 app.use('/api/resources', resourcesRoutes)
 app.use('/api/admin', adminRoutes)
 app.use('/api/profile', profileRoutes)
+app.use('/api/coverletter', coverLetterRoutes)
 
 
 app.get('/', (req, res) => res.json({ message: 'CareerLaunch AI Backend Running!' }))

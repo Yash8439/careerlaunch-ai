@@ -21,6 +21,7 @@ const navItems = [
   { icon: Map, label: 'Roadmap', path: '/roadmap' },
   { icon: ListChecks, label: 'Question Bank', path: '/questions' },
   { icon: BookOpen, label: 'Resources', path: '/resources' },
+  { icon: FileText, label: 'Cover Letter', path: '/cover-letter' },
 ]
 
 const quickActions = [
@@ -28,6 +29,7 @@ const quickActions = [
   { icon: Mic, title: 'Start Interview', desc: 'Practice with AI interviewer', color: 'from-teal-900/50 to-teal-800/20', border: 'border-teal-600/30', path: '/interview' },
   { icon: Map, title: 'Generate Roadmap', desc: 'Get your personalized plan', color: 'from-blue-900/50 to-blue-800/20', border: 'border-blue-600/30', path: '/roadmap' },
   { icon: Brain, title: 'Chat with Notes', desc: 'Upload & ask questions', color: 'from-pink-900/50 to-pink-800/20', border: 'border-pink-600/30', path: '/chat' },
+  { icon: FileText, title: 'Cover Letter', desc: 'AI-tailored cover letters', color: 'from-green-900/50 to-green-800/20', border: 'border-green-600/30', path: '/cover-letter' },
 ]
 
 const activityLabels = {
