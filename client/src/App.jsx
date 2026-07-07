@@ -21,6 +21,8 @@ import AdminResources from './pages/AdminResources'
 import ProfileSettings from './pages/ProfileSettings'
 import ForgotPassword from './pages/ForgotPassword'
 import ResetPassword from './pages/ResetPassword'
+import CoverLetter from './pages/CoverLetter'
+import CompanyPrep from './pages/CompanyPrep'
 
 const AdminRoute = ({ children }) => {
   const { user, loading } = useAuth()
@@ -68,6 +70,10 @@ export default function App() {
 <Route path="/settings" element={<ProtectedRoute><ProfileSettings /></ProtectedRoute>} />
 <Route path="/forgot-password" element={<ForgotPassword />} />
 <Route path="/reset-password/:token" element={<ResetPassword />} />
+<Route path="/cover-letter" element={<ProtectedRoute><CoverLetter /></ProtectedRoute>} />
+<Route path="/company-prep" element={<ProtectedRoute><CompanyPrep /></ProtectedRoute>} />
+
+
     </Routes>
   )
 }

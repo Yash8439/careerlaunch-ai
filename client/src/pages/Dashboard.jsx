@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import axios from 'axios'
 import {
   Brain, FileText, Mic, Map, BookOpen, Zap, LogOut, User, TrendingUp,
-  Award, Flame, ListChecks, Clock, Sparkles, AlertTriangle, PartyPopper, Calendar
+  Award, Flame, ListChecks, Clock, Sparkles, AlertTriangle, PartyPopper, Calendar, Building2
 } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import toast from 'react-hot-toast'
@@ -12,6 +12,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import AnimatedBackground from '../components/AnimatedBackground'
 import TiltCard from '../components/TiltCard'
 import { API_URL } from '../config'
+
 
 const navItems = [
   { icon: TrendingUp, label: 'Dashboard', path: '/dashboard', active: true },
@@ -22,6 +23,7 @@ const navItems = [
   { icon: ListChecks, label: 'Question Bank', path: '/questions' },
   { icon: BookOpen, label: 'Resources', path: '/resources' },
   { icon: FileText, label: 'Cover Letter', path: '/cover-letter' },
+   { icon: Building2, label: 'Company Prep', path: '/company-prep' },
 ]
 
 const quickActions = [
@@ -30,6 +32,7 @@ const quickActions = [
   { icon: Map, title: 'Generate Roadmap', desc: 'Get your personalized plan', color: 'from-blue-900/50 to-blue-800/20', border: 'border-blue-600/30', path: '/roadmap' },
   { icon: Brain, title: 'Chat with Notes', desc: 'Upload & ask questions', color: 'from-pink-900/50 to-pink-800/20', border: 'border-pink-600/30', path: '/chat' },
   { icon: FileText, title: 'Cover Letter', desc: 'AI-tailored cover letters', color: 'from-green-900/50 to-green-800/20', border: 'border-green-600/30', path: '/cover-letter' },
+  { icon: Building2, title: 'Company Prep', desc: 'Amazon, Google, TCS & more', color: 'from-yellow-900/50 to-yellow-800/20', border: 'border-yellow-600/30', path: '/company-prep' },
 ]
 
 const activityLabels = {

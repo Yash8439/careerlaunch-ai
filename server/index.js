@@ -16,6 +16,7 @@ import resourcesRoutes from './routes/resources.routes.js'
 import adminRoutes from './routes/admin.routes.js'
 import profileRoutes from './routes/profile.routes.js'
 import coverLetterRoutes from './routes/coverletter.routes.js'
+import companyPrepRoutes from './routes/company-prep.routes.js'
 const app = express()
 
 app.use(cors({
@@ -41,6 +42,7 @@ app.use('/api/resources', resourcesRoutes)
 app.use('/api/admin', adminRoutes)
 app.use('/api/profile', profileRoutes)
 app.use('/api/coverletter', coverLetterRoutes)
+app.use('/api/company-prep', companyPrepRoutes)
 
 
 app.get('/', (req, res) => res.json({ message: 'CareerLaunch AI Backend Running!' }))
