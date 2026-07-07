@@ -24,6 +24,7 @@ const navItems = [
   { icon: BookOpen, label: 'Resources', path: '/resources' },
   { icon: FileText, label: 'Cover Letter', path: '/cover-letter' },
    { icon: Building2, label: 'Company Prep', path: '/company-prep' },
+   { icon: Calendar, label: 'Scheduler', path: '/scheduler' },
 ]
 
 const quickActions = [

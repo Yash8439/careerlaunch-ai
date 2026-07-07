@@ -17,6 +17,9 @@ import adminRoutes from './routes/admin.routes.js'
 import profileRoutes from './routes/profile.routes.js'
 import coverLetterRoutes from './routes/coverletter.routes.js'
 import companyPrepRoutes from './routes/company-prep.routes.js'
+import scheduleRoutes from './routes/schedule.routes.js'
+import { startCronJobs } from './utils/cronJobs.js'
+
 const app = express()
 
 app.use(cors({
@@ -43,6 +46,7 @@ app.use('/api/admin', adminRoutes)
 app.use('/api/profile', profileRoutes)
 app.use('/api/coverletter', coverLetterRoutes)
 app.use('/api/company-prep', companyPrepRoutes)
+app.use('/api/schedule', scheduleRoutes)
 
 
 app.get('/', (req, res) => res.json({ message: 'CareerLaunch AI Backend Running!' }))
@@ -50,6 +54,7 @@ app.get('/', (req, res) => res.json({ message: 'CareerLaunch AI Backend Running!
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('MongoDB Connected')
+     startCronJobs()
     app.listen(process.env.PORT, () =>
       console.log(`Server running on port ${process.env.PORT}`)
     )
