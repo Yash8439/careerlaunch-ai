@@ -1,5 +1,6 @@
 import dotenv from 'dotenv'
 dotenv.config()
+console.log('Email config:', process.env.EMAIL_USER, process.env.EMAIL_PASS ? 'PASSWORD SET' : 'PASSWORD MISSING')
 
 import express from 'express'
 import mongoose from 'mongoose'

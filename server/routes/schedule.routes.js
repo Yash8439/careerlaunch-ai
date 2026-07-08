@@ -35,14 +35,21 @@ router.post('/', protect, async (req, res) => {
 
     // Send confirmation email
     const user = await User.findById(req.user.id)
-    const { sendScheduleEmail } = await import('../utils/sendEmail.js')
-    await sendScheduleEmail(user.email, user.name, schedule)
+try {
+  console.log('Sending email to:', user.email)
+  const { sendScheduleEmail } = await import('../utils/sendEmail.js')
+  await sendScheduleEmail(user.email, user.name, schedule)
+  console.log('Email sent successfully!')
+} catch (emailErr) {
+  console.error('Email send failed:', emailErr.message)
+  console.error('Full error:', emailErr)
+}
 
-    res.status(201).json({ success: true, schedule })
-  } catch (err) {
-    console.error('Schedule create error:', err)
-    res.status(500).json({ message: 'Failed to create schedule' })
-  }
+res.status(201).json({ success: true, schedule })
+} catch (err) {
+  console.error('Schedule create error:', err)
+  res.status(500).json({ message: 'Failed to create schedule' })
+}
 })
 
 // Update status (complete/cancel)
