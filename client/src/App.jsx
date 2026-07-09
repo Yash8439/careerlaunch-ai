@@ -24,6 +24,7 @@ import ResetPassword from './pages/ResetPassword'
 import CoverLetter from './pages/CoverLetter'
 import CompanyPrep from './pages/CompanyPrep'
 import InterviewScheduler from './pages/InterviewScheduler'
+import ResumeBuilder from './pages/ResumeBuilder'
 const AdminRoute = ({ children }) => {
   const { user, loading } = useAuth()
   if (loading) return (
@@ -73,6 +74,7 @@ export default function App() {
 <Route path="/cover-letter" element={<ProtectedRoute><CoverLetter /></ProtectedRoute>} />
 <Route path="/company-prep" element={<ProtectedRoute><CompanyPrep /></ProtectedRoute>} />
 <Route path="/scheduler" element={<ProtectedRoute><InterviewScheduler /></ProtectedRoute>} />
+<Route path="/resume-builder" element={<ProtectedRoute><ResumeBuilder /></ProtectedRoute>} />
 
 
     </Routes>

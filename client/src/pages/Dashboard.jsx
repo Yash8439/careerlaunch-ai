@@ -25,6 +25,7 @@ const navItems = [
   { icon: FileText, label: 'Cover Letter', path: '/cover-letter' },
    { icon: Building2, label: 'Company Prep', path: '/company-prep' },
    { icon: Calendar, label: 'Scheduler', path: '/scheduler' },
+   { icon: FileText, label: 'Resume Builder', path: '/resume-builder' },
 ]
 
 const quickActions = [
@@ -34,6 +35,7 @@ const quickActions = [
   { icon: Brain, title: 'Chat with Notes', desc: 'Upload & ask questions', color: 'from-pink-900/50 to-pink-800/20', border: 'border-pink-600/30', path: '/chat' },
   { icon: FileText, title: 'Cover Letter', desc: 'AI-tailored cover letters', color: 'from-green-900/50 to-green-800/20', border: 'border-green-600/30', path: '/cover-letter' },
   { icon: Building2, title: 'Company Prep', desc: 'Amazon, Google, TCS & more', color: 'from-yellow-900/50 to-yellow-800/20', border: 'border-yellow-600/30', path: '/company-prep' },
+  { icon: FileText, title: 'Resume Builder', desc: 'Build your resume with AI', color: 'from-purple-900/50 to-purple-800/20', border: 'border-purple-600/30', path: '/resume-builder' },
 ]
 
 const activityLabels = {
