@@ -266,7 +266,7 @@ const ResumePreview = ({ sections, template }) => {
   const header = sections.find(s => s.type === 'header')?.data
   const t = template
 
-  const sectionStyle = "mb-4"
+  const sectionStyle = { marginBottom: '12px' }
   const headingStyle = {
     fontSize: '11px', fontWeight: 'bold', textTransform: 'uppercase',
     letterSpacing: '1px', color: t.accent, borderBottom: `2px solid ${t.accent}`,
